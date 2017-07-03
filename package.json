@@ -1,0 +1,31 @@
+{
+  "name": "google",
+  "version": "0.0.1",
+  "description": "Google search scraper",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tommelo/google.git"
+  },
+  "keywords": [
+    "google",
+    "search",
+    "scraper"
+  ],
+  "author": "tommelo",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/tommelo/google/issues"
+  },
+  "homepage": "https://github.com/tommelo/google#readme",
+  "dependencies": {
+    "bluebird": "^3.5.0",
+    "cheerio": "^1.0.0-rc.2",
+    "https-proxy-agent": "^2.0.0",
+    "request": "^2.81.0",
+    "request-promise": "^4.2.1"
+  }
+}
