@@ -27,6 +27,7 @@
 
 var cheerio         = require('cheerio'),
     request         = require('request-promise'),
+    url             = require('url'),
     Promise         = require('bluebird'),
     HttpsProxyAgent = require('https-proxy-agent'),    
     _               = require('lodash');
@@ -39,10 +40,10 @@ var settings = {
     proxy  : undefined    
 }
 
-var START_AT_PAGE    = 0,      // starts at page 0
-    PAGE_LIMIT       = 10,     // google's page limit 
-    URL_ELEMENT      = 'cite', // html tag to search
-    FOLLOW_REDIRECTS = false;  // avoid honeypots
+var START_AT_PAGE    = 0,         // starts at page 0
+    PAGE_LIMIT       = 10,        // google's page limit 
+    URL_ELEMENT      = '.g h3 a', // html tag to search
+    FOLLOW_REDIRECTS = false;     // avoid honeypots
 
 /**
  * Executes a request
@@ -73,7 +74,9 @@ var transform = function(body) {
 var scrape = function($) {
     var links = [];
     $(URL_ELEMENT).each(function(i, element) {
-        links.push($(element).text());
+        var href = $(element).attr('href');
+        var parsed = url.parse(href, true);
+        links.push(parsed.query.q);
     });
 
     return links;
